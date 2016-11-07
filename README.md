@@ -9,45 +9,17 @@ The framework source code can be found here: [cakephp/cakephp](https://github.co
 
 ## Installation
 
-1. Rajouter la fonction qui suit dans le fichier: /vendor/cakephp/cakephp/src/Utility/Xml.php
+1. Download [Composer](http://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
+2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
 
-        public static function xml_attribute($object, $attribute)
-        {
-            if(isset($object[$attribute]))
-                return (string) $object[$attribute];
-        }
-        
-2. Dans app.php, vers la ligne 175 , remplacer le contenu par 
+If Composer is installed globally, run
+```bash
+composer create-project --prefer-dist cakephp/app [app_name]
+```
 
-    'EmailTransport' => [
-        'default' => [
-            'className' => 'Smtp',
-            'host' => 'ssl://smtp.gmail.com',
-            'port' => 465,
-            'username' => 'simplon.co.epinal@gmail.com',
-            'password' => 'jensaisrien',
-        ],
-    ],
+You should now be able to visit the path to where you installed the app and see the default home page.
 
-    'Email' => [
-        'default' => [
-            'transport' => 'default',
-            'from' => 'you@localhost',
-            //'charset' => 'utf-8',
-            //'headerCharset' => 'utf-8',
-        ],
-    ],
-    
-    
-****************************************************************************************************
-A ajouter à la fin de vos controllers publiques :
+## Configuration
 
-public function beforeFilter(Event $event)
-    {
-        parent::beforeFilter($event);
-        $actions = $this->Common->guestActions($this->params['prefix'],$this->params['controller']);
-        $this->Auth->allow($actions);
-    }
-    
-  et au début, dans les use :
-  use Cake\Event\Event;
+Read and edit `config/app.php` and setup the 'Datasources' and any other
+configuration relevant for your application.

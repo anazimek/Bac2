@@ -16,30 +16,7 @@ class CategoriesControllerTest extends IntegrationTestCase
      * @var array
      */
     public $fixtures = [
-        'app.categories',
-        'app.forums',
-        'app.users',
-        'app.roles',
-        'app.permissions',
-        'app.connectors',
-        'app.permissions_roles',
-        'app.diaries',
-        'app.projects',
-        'app.from_to_tasks',
-        'app.tasks',
-        'app.states',
-        'app.tasks_users',
-        'app.lastuserthread',
-        'app.portfolios',
-        'app.projects_users',
-        'app.portfolios_users',
-        'app.entries',
-        'app.lasttopicuser',
-        'app.threads',
-        'app.posts',
-        'app.files',
-        'app.posts_files',
-        'app.subscriptions'
+        'app.categories'
     ];
 
     /**
