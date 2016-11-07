@@ -80,3 +80,18 @@ Router::scope('/', function (RouteBuilder $routes) {
  * how to customize the loading of plugin routes.
  */
 Plugin::routes();
+
+Router::prefix('admin', function ($routes) {
+// Parce que vous êtes dans le scope admin, vous n'avez pas besoin
+// d'inclure le prefix /admin ou l'élément de route admin.
+    $routes->connect('/utilisateur', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/utilisateur/profil/*', ['controller' => 'Users', 'action' => 'view']);
+    $routes->connect('/utilisateur/ajouter', ['controller' => 'Users', 'action' => 'add']);
+    $routes->connect('/utilisateur/editer/*', ['controller' => 'Users', 'action' => 'edit']);
+    $routes->connect('/articles/', ['controller' => 'Articles', 'action' => 'index']);
+    $routes->connect('/articles/ajouter', ['controller' => 'Articles', 'action' => 'add']);
+    $routes->connect('/articles/editer/*', ['controller' => 'Articles', 'action' => 'edit']);
+    $routes->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);;
+    $routes->fallbacks(DashedRoute::class);
+});
+
