@@ -24,30 +24,7 @@ class CategoriesTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.categories',
-        'app.forums',
-        'app.users',
-        'app.roles',
-        'app.permissions',
-        'app.connectors',
-        'app.permissions_roles',
-        'app.diaries',
-        'app.projects',
-        'app.from_to_tasks',
-        'app.tasks',
-        'app.states',
-        'app.tasks_users',
-        'app.projects_users',
-        'app.entries',
-        'app.portfolios',
-        'app.portfolios_users',
-        'app.lasttopicuser',
-        'app.threads',
-        'app.posts',
-        'app.files',
-        'app.posts_files',
-        'app.subscriptions',
-        'app.lastuserthread'
+        'app.categories'
     ];
 
     /**
