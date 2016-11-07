@@ -49,7 +49,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      * its action called 'display', and we pass a param to select the view file
      * to use (in this case, src/Template/Pages/home.ctp)...
      */
-    $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+    $routes->connect('/', ['controller' => 'Articles', 'action' => 'index']);
+    $routes->connect('/articles/detail/*', ['controller' => 'Articles', 'action' => 'view']);
+    $routes->connect('/utilisateur/connexion', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/utilisateur/deconnexion', ['controller' => 'Users', 'action' => 'logout']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
@@ -88,7 +91,7 @@ Router::prefix('admin', function ($routes) {
     $routes->connect('/utilisateur/profil/*', ['controller' => 'Users', 'action' => 'view']);
     $routes->connect('/utilisateur/ajouter', ['controller' => 'Users', 'action' => 'add']);
     $routes->connect('/utilisateur/editer/*', ['controller' => 'Users', 'action' => 'edit']);
-    $routes->connect('/articles/', ['controller' => 'Articles', 'action' => 'index']);
+    $routes->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);
     $routes->connect('/articles/ajouter', ['controller' => 'Articles', 'action' => 'add']);
     $routes->connect('/articles/editer/*', ['controller' => 'Articles', 'action' => 'edit']);
     $routes->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);;
