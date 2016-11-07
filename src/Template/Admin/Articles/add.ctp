@@ -9,12 +9,12 @@
     </ul>
 </nav>
 <div class="articles form large-9 medium-8 columns content">
-    <?= $this->Form->create($article) ?>
+    <?= $this->Form->create($article,['enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Add Article') ?></legend>
         <?php
             echo $this->Form->input('name');
-            echo $this->Form->input('picture_url');
+            echo $this->Form->input('picture',['type' => 'file']);
             echo $this->Form->input('description');
             echo $this->Form->input('user_id', ['options' => $users]);
             echo $this->Form->input('categorie_id', ['options' => $categories]);
