@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menu>
+    <menuItem titre="Dashboard" prefix='Dashboard' controller="Projects" action="index"></menuItem>
+    <menuItem titre="Gestion du site" prefix="Admin" controller="Users" action="index">
+        <menuItem titre="Gérer utilisateur" prefix="Admin" controller="Users" action="index"></menuItem>
+        <menuItem titre="Gérer permission" prefix="connecteursmanager" controller="Permissions" action="index"></menuItem>
+        <menuItem titre="Gérer forum" prefix="Admin" controller="Forums" action="listcategory"></menuItem>
+        <menuItem titre="Gérer tchat" prefix="Tchat" controller="Rooms" action="index"></menuItem>
+        <menuItem titre="Portfolios" prefix="Admin" controller="Portfolios" action="index"></menuItem>
+    </menuItem>
+    <menuItem titre="Mes Tchats" prefix="Tchat" controller="Rooms" action="index2"></menuItem>
+    <menuItem titre="Forum" prefix="Forums" controller="Forums" action="index"></menuItem>
+</menu>
+

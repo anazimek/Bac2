@@ -1,0 +1,64 @@
+/*
+Travail sur les effets des images
+*/
+.img-portfolio
+{
+    margin:0;
+    width:100%;
+    overflow: hidden;
+}
+
+.img-portfolio-img
+{
+    position: relative;
+}
+
+.img-portfolio-description
+{
+    display: none;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+    height:100%;
+    background-color: rgba(30,30,30,0.8);
+    color:#eee;
+    margin: 0;
+    padding: 12px;
+}
+
+.img-portfolio-description a
+{
+    color: #326bff;
+    text-decoration: none;
+}
+
+.img-portfolio-description a:hover
+{
+    color: #619cff;
+}
+
+.bottom-btn{
+    position: absolute;
+    bottom:8px !important;
+    right:8px !important;
+}
+
+.bottom-btn a
+{
+    color:white !important;
+}
+
+/*
+Supprimer les espacements de bootstrap
+*/
+.row.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.col-no-gutter
+{
+    padding: 0;
+
+}
