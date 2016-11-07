@@ -6,16 +6,18 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <meta content="Simplon Epinal numérique dev web développeur developper internet école formation"
+    <meta content="Blog d'Alexis"
           name="description"/>
-    <meta content="" name="Simplon"/>
+    <meta content="" name="Alexis"/>
 
-    <title>Simplon Epinal</title>
+    <title>Blog d'Alexis</title>
     <!-- couleur rose: #ed1450 -->
     <!--CSS styles-->
-    <?= $this->Html->css('../assets/global/plugins/font-awesome/css/font-awesome.min.css') ?>
-    <?= $this->Html->css('../assets/global/plugins/bootstrap/css/bootstrap.min.css') ?>
+    <?= $this->Html->css('../css/bootstrap.css') ?>
+    <?= $this->Html->css('../css/bootstrap.min.css') ?>
     <?= $this->Html->css('front.css') ?>
+
+
 
     <!--favicon-->
     <?= $this->Html->meta(
@@ -27,12 +29,6 @@
 
 </head>
 <header>
-    <div class="page-logo">
-        <a href="/">
-            <?= $this->Html->image('../img/Simplon.png', ['class' => 'logo-default', 'width' => 150, 'height' => 50, 'img-responsive']) ?>
-        </a>
-        <a class="btn btn-default pull-right" id="connexion" href="./utilisateur/connexion">Connexion</a>
-    </div>
     <nav id="menu">
         <div class="navbar navbar-default">
             <div class="container-fluid">
@@ -45,7 +41,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand <?php if ($this->request->here == '/'): ?>active <?php endif; ?>" href="/">Accueil</a>
-
+                    <a class="btn btn-default" id="connexion" href="./utilisateur/connexion" style="background-color: yellow">Connexion</a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
