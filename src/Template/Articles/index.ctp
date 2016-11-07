@@ -42,6 +42,9 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+    <div class="col-md-8" style="background-color: red">
+        <h1>Ouloulou</h1>
+    </div>
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->prev('< ' . __('previous')) ?>
