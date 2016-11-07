@@ -9,7 +9,7 @@
     </ul>
 </nav>
 <div class="users form large-9 medium-8 columns content">
-    <?= $this->Form->create($user) ?>
+    <?= $this->Form->create($user,['enctype' => 'multipart/form-data']) ?>
     <fieldset>
         <legend><?= __('Add User') ?></legend>
         <?php
@@ -18,7 +18,7 @@
             echo $this->Form->input('username');
             echo $this->Form->input('password');
             echo $this->Form->input('email');
-            echo $this->Form->input('picture_url');
+            echo $this->Form->input('avatar',['type' => 'file']);
             echo $this->Form->input('role_id', ['options' => $roles]);
         ?>
     </fieldset>
