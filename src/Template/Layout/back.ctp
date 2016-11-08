@@ -31,7 +31,7 @@
 <header>
     <nav id="menu">
         <div class="navbar navbar-default">
-            <div class="container-fluid" style="background-color: red">
+            <div class="container-fluid" style="background-color: black">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -65,8 +65,8 @@
 
 </body>
 
-<footer>
-    <div class="container hidden-print" style="background-color: red">
+<footer style="background-color: black">
+    <div class="container hidden-print">
         <div class="row">
             <div class="col-md-8">
                 <h4>1 Avenue Général de Gaulle, 88000 Épinal</h4>
