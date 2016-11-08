@@ -55,6 +55,7 @@ class ArticlesController extends AppController
     {
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
+            $this->request->data['user_id'] = $this->Auth->User('id');
             # upload image
             if (!empty($_FILES['picture_url']) ) {
                 $img = $_FILES['picture_url']['name'];
@@ -66,8 +67,8 @@ class ArticlesController extends AppController
                 ImageTool::resize(array(
                     'input' => $pathimg,
                     'output' => $pathimg,
-                    'width' =>500,
-                    'height' => 200,
+                    'width' =>100,
+                    'height' =>100,
                     'mode' => 'fit'
                 ));
                 $this->request->data['picture_url'] = $rename;

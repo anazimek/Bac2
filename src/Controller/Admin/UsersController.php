@@ -19,7 +19,8 @@ class UsersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Roles']
+            'contain' => ['Roles'],
+            'limit' => 10
         ];
         $users = $this->paginate($this->Users);
 

@@ -17,7 +17,6 @@
     <?= $this->Html->css('/css/bootstrap.min.css') ?>
 
 
-
     <!--favicon-->
     <?= $this->Html->meta(
         'favicon.ico',
@@ -29,9 +28,9 @@
 </head>
 <header>
     <nav id="menu">
-        <div class="navbar navbar-default">
+        <div class="navbar">
             <div class="container-fluid" style="background-color: black">
-                <div class="navbar-header">
+                <div class="navbar-header" style="width: 100%">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -39,8 +38,10 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand <?php if ($this->request->here == '/'): ?>active <?php endif; ?>" href="/">Accueil</a>
-                    <a class="btn btn-default" id="connexion" href="./utilisateur/connexion" style="background-color: yellow">Connexion</a>
+                    <a class="navbar-brand" href="/admin/articles">Articles</a>
+                    <a class="navbar-brand" href="/admin/utilisateur">Utilisateurs</a>
+                    <a class="navbar-brand pull-right" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'logout', 'prefix' => false]); ?>">Déconnexion</a>
+                    <a class="navbar-brand pull-right" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'view', $this->request->session()->read('Auth.User.id')]); ?>">Mon Profil</a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -65,7 +66,7 @@
 </body>
 
 <footer style="background-color: black">
-    <div class="container hidden-print">
+    <div class="container-fluid">
         <div class="row">
             <div class="col-md-8">
                 <h4>1 Avenue Général de Gaulle, 88000 Épinal</h4>
@@ -73,7 +74,7 @@
             </div>
             <div class="col-md-4">
                 <h4>Vous voulez en savoir plus?</h4>
-                <a href="/nous-contacter" class="btn btn-default" id="connexion">Nous contacter</a>
+                <p>alexis.nazimek88@gmail.com</p>
             </div>
         </div>
 </footer>

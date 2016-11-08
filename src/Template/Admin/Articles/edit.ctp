@@ -25,6 +25,7 @@
             echo $this->Form->input('description');
             echo $this->Form->input('user_id', ['options' => $users]);
             echo $this->Form->input('categorie_id', ['options' => $categories]);
+            echo $this->Form->input('published');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

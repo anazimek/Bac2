@@ -66,7 +66,7 @@
 </body>
 
 <footer>
-    <div class="container hidden-print" style="background-color: red">
+    <div class="container-fluid" style="background-color: red">
         <div class="row">
             <div class="col-md-8">
                 <h4>1 Avenue Général de Gaulle, 88000 Épinal</h4>
@@ -74,7 +74,7 @@
             </div>
             <div class="col-md-4">
                 <h4>Vous voulez en savoir plus?</h4>
-                <a href="/nous-contacter" class="btn btn-default" id="connexion">Nous contacter</a>
+                <p>alexis.nazimek88@gmail.com</p>
             </div>
         </div>
 </footer>
