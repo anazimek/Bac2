@@ -14,6 +14,7 @@
                     <label for="pwd">Photo:</label>
                     <?= $this->Form->input('picture_url', ['type' => 'file','label' => false]); ?>
                 </div>
+                <?= $this->Form->input('published');?>
             </div>
             <div class="col-md-6">
                 <div class="form-group">

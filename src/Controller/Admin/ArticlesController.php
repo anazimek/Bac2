@@ -24,7 +24,7 @@ class ArticlesController extends AppController
     {
         $this->paginate = [
             'contain' => ['Users', 'Categories'],
-            'limit' => 5
+            'limit' => 10
         ];
         $articles = $this->paginate($this->Articles);
 
@@ -58,6 +58,7 @@ class ArticlesController extends AppController
     {
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
+            $this->request->data['user_id'] = $this->Auth->User('id');
             # upload image
             if (!empty($_FILES['picture_url']) ) {
                 $img = $_FILES['picture_url']['name'];
