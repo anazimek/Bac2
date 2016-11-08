@@ -2,6 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
+require_once(ROOT . DS . 'src'. DS . 'Controller'. DS . 'Component' . DS . 'ImageTool.php');
+use ImageTool;
 
 /**
  * Users Controller
@@ -53,6 +56,24 @@ class UsersController extends AppController
     {
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
+            # upload image
+            if (!empty($_FILES['picture_url']) ) {
+                $img = $_FILES['picture_url']['name'];
+                $extention = explode('.', $img);
+                $rename = str_replace($extention[0], Time::now()->format("Ymdhms"), $img);
+                $temp = $_FILES['picture_url']['tmp_name'];
+                $pathimg = WWW_ROOT . "img" . DS . "user" . DS . $rename;
+                move_uploaded_file($temp, $pathimg);
+                ImageTool::resize(array(
+                    'input' => $pathimg,
+                    'output' => $pathimg,
+                    'width' =>100,
+                    'height' => 100,
+                    'mode' => 'fit'
+                ));
+                $this->request->data['picture_url'] = $rename;
+            }
+
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 return $this->redirect(['action' => 'index']);

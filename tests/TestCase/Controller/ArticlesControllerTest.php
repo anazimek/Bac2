@@ -18,6 +18,7 @@ class ArticlesControllerTest extends IntegrationTestCase
     public $fixtures = [
         'app.articles',
         'app.users',
+        'app.roles',
         'app.categories'
     ];
 

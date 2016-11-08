@@ -18,8 +18,7 @@
             echo $this->Form->input('username');
             echo $this->Form->input('password');
             echo $this->Form->input('email');
-            echo $this->Form->input('avatar',['type' => 'file']);
-            echo $this->Form->input('role_id', ['options' => $roles]);
+            echo $this->Form->input('picture_url',['type' => 'file']);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
