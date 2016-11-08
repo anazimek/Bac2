@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\I18n\Time;
+require_once(ROOT . DS . 'src'. DS . 'Controller'. DS . 'Component' . DS . 'ImageTool.php');
+use ImageTool;
 /**
  * Articles Controller
  *
@@ -11,11 +13,6 @@ use App\Controller\AppController;
 class ArticlesController extends AppController
 {
 
-    public function initialize()
-    {
-        parent::initialize();
-        $this->Auth->allow('index','view');
-    }
     /**
      * Index method
      *
@@ -58,6 +55,23 @@ class ArticlesController extends AppController
     {
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
+            # upload image
+            if (!empty($_FILES['picture_url']) ) {
+                $img = $_FILES['picture_url']['name'];
+                $extention = explode('.', $img);
+                $rename = str_replace($extention[0], Time::now()->format("Ymdhms"), $img);
+                $temp = $_FILES['picture_url']['tmp_name'];
+                $pathimg = WWW_ROOT . "img" . DS . "article" . DS . $rename;
+                move_uploaded_file($temp, $pathimg);
+                ImageTool::resize(array(
+                    'input' => $pathimg,
+                    'output' => $pathimg,
+                    'width' =>500,
+                    'height' => 200,
+                    'mode' => 'fit'
+                ));
+                $this->request->data['picture_url'] = $rename;
+            }
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));

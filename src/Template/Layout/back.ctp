@@ -13,9 +13,8 @@
     <title>Blog d'Alexis</title>
     <!-- couleur rose: #ed1450 -->
     <!--CSS styles-->
-    <?= $this->Html->css('../css/bootstrap.css') ?>
-    <?= $this->Html->css('../css/bootstrap.min.css') ?>
-    <?= $this->Html->css('front.css') ?>
+    <?= $this->Html->css('/css/bootstrap.css') ?>
+    <?= $this->Html->css('/css/bootstrap.min.css') ?>
 
 
 
@@ -80,8 +79,9 @@
 </footer>
 
 <!--JS libraries-->
-<?= $this->html->script('../assets/global/plugins/jquery.min.js') ?>
-<?= $this->html->script('../assets/global/plugins/bootstrap/js/bootstrap.min.js') ?>
+<?= $this->html->script('/js/jquery-3.1.1.min.js') ?>
+<?= $this->html->script('/js/bootstrap.min.js') ?>
+<?= $this->html->script('/js/jquery-3.1.1.js') ?>
 
 
 </html>
