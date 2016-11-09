@@ -31,7 +31,7 @@
 <header>
     <nav id="menu">
         <div class="navbar navbar-default">
-            <div class="container-fluid" style="background-color: red">
+            <div class="container-fluid" style="background-color:cornflowerblue">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                             data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -41,8 +41,13 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="/">Accueil</a>
+                    <?php if (isset($this->request->session()->read('Auth')['User']['id'])): ?>
+                    <a class="navbar-brand" id="connexion" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'logout'])?>">Deconnexion</a>
+                    <a class="navbar-brand" href="/utilisateur/profil/<?=$this->request->session()->read('Auth')['User']['id']?>">Mon Profil</a>
+                    <?php else: ?>
                     <a class="navbar-brand" id="connexion" href="/utilisateur/connexion">Connexion</a>
-                    <a class="navbar-brand" href="">S'inscrire</a>
+                    <a class="navbar-brand" href="/utilisateur/s'inscrire">S'inscrire</a>
+                    <?php endif;?>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -67,16 +72,8 @@
 </body>
 
 <footer>
-    <div class="container-fluid" style="background-color: red">
+    <div class="container-fluid" style="background-color: cornflowerblue">
         <div class="row">
-            <div class="col-md-8">
-                <h4>1 Avenue Général de Gaulle, 88000 Épinal</h4>
-                <p>03 29 33 88 88 </p>
-            </div>
-            <div class="col-md-4">
-                <h4>Vous voulez en savoir plus?</h4>
-                <p>alexis.nazimek88@gmail.com</p>
-            </div>
         </div>
 </footer>
 

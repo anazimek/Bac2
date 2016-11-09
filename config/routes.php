@@ -53,6 +53,9 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/articles/detail/*', ['controller' => 'Articles', 'action' => 'view']);
     $routes->connect('/utilisateur/connexion', ['controller' => 'Users', 'action' => 'login']);
     $routes->connect('/utilisateur/deconnexion', ['controller' => 'Users', 'action' => 'logout']);
+    $routes->connect('/utilisateur/s\'inscrire', ['controller' => 'Users', 'action' => 'add']);
+    $routes->connect('/utilisateur/profil/*', ['controller' => 'Users', 'action' => 'view']);
+    $routes->connect('/utilisateur/editer/*', ['controller' => 'Users', 'action' => 'edit']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.
