@@ -1,33 +1,38 @@
 <?php $this->layout = 'back'; ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $article->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Articles'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="articles form large-9 medium-8 columns content">
-    <?= $this->Form->create($article) ?>
-    <fieldset>
-        <legend><?= __('Edit Article') ?></legend>
-        <?php
-            echo $this->Form->input('name');
-            echo $this->Form->input('picture_url');
-            echo $this->Form->input('description');
-            echo $this->Form->input('user_id', ['options' => $users]);
-            echo $this->Form->input('categorie_id', ['options' => $categories]);
-            echo $this->Form->input('published');
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-3">
+            <?= $this->Form->create($article, ['enctype' => 'multipart/form-data']) ?>
+            <fieldset>
+                <legend><h2><?= __('Editer l\'Article') ?></h2></legend>
+            </fieldset>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="usr">Nom de l'article:</label>
+                    <?= $this->Form->input('name', ['label' => false]); ?>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Description:</label>
+                    <?= $this->Form->input('description', ['label' => false]); ?>
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Image:</label>
+                    <?= $this->Form->input('picture_url', ['type' => 'file', 'label' => false]); ?>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="pwd">Catégorie:</label>
+                    <?= $this->Form->input('categorie_id', ['label' => false]); ?>
+                </div>
+                <div class="form-group">
+                    <?= $this->Form->input('published'); ?>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-group text-center">
+        <?= $this->Form->button(__('Envoyer')) ?>
+        <?= $this->Form->end() ?>
+    </div>
 </div>
