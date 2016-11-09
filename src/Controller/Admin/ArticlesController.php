@@ -59,11 +59,10 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $this->request->data['user_id'] = $this->Auth->User('id');
-            # upload image
             if (!empty($_FILES['picture_url']) ) {
                 $img = $_FILES['picture_url']['name'];
                 $extention = explode('.', $img);
-                $rename = str_replace($extention[0], Time::now()->format("Ymdhms"), $img);
+                $rename = str_replace($extention[0], $article->id, $img);
                 $temp = $_FILES['picture_url']['tmp_name'];
                 $pathimg = WWW_ROOT . "img" . DS . "article" . DS . $rename;
                 move_uploaded_file($temp, $pathimg);
@@ -71,7 +70,7 @@ class ArticlesController extends AppController
                     'input' => $pathimg,
                     'output' => $pathimg,
                     'width' =>100,
-                    'height' => 100,
+                    'height' =>100,
                     'mode' => 'fit'
                 ));
                 $this->request->data['picture_url'] = $rename;
@@ -86,7 +85,8 @@ class ArticlesController extends AppController
             }
         }
         $users = $this->Articles->Users->find('list', ['limit' => 200]);
-        $categories = $this->Articles->Categories->find('list', ['limit' => 200]);
+        $categories = $this->Articles->Categories->find('list', [
+            'valueField'=> 'description']);
         $this->set(compact('article', 'users', 'categories'));
         $this->set('_serialize', ['article']);
     }
@@ -104,6 +104,25 @@ class ArticlesController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            $this->request->data['user_id'] = $this->Auth->User('id');
+            # upload image
+                if (!empty($_FILES['picture_url'])) {
+                    $img = $_FILES['picture_url']['name'];
+                    $extention = explode('.', $img);
+                    $rename = str_replace($extention[0], $article->id, $img);
+                    $temp = $_FILES['picture_url']['tmp_name'];
+                    $pathimg = WWW_ROOT . "img" . DS . "article" . DS . $rename;
+                    move_uploaded_file($temp, $pathimg);
+                    ImageTool::resize(array(
+                        'input' => $pathimg,
+                        'output' => $pathimg,
+                        'width' => 100,
+                        'height' => 100,
+                        'mode' => 'fit'
+                    ));
+                    $this->request->data['picture_url'] = $rename;
+                }
+
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));
@@ -114,7 +133,8 @@ class ArticlesController extends AppController
             }
         }
         $users = $this->Articles->Users->find('list', ['limit' => 200]);
-        $categories = $this->Articles->Categories->find('list', ['limit' => 200]);
+        $categories = $this->Articles->Categories->find('list', [
+            'valueField'=> 'description']);
         $this->set(compact('article', 'users', 'categories'));
         $this->set('_serialize', ['article']);
     }

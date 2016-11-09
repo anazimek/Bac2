@@ -40,8 +40,9 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand <?php if ($this->request->here == '/'): ?>active <?php endif; ?>" href="/">Accueil</a>
-                    <a class="btn btn-default" id="connexion" href="./utilisateur/connexion" style="background-color: yellow">Connexion</a>
+                    <a class="navbar-brand" href="/">Accueil</a>
+                    <a class="navbar-brand" id="connexion" href="/utilisateur/connexion">Connexion</a>
+                    <a class="navbar-brand" href="">S'inscrire</a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">

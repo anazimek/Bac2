@@ -73,8 +73,8 @@ class ArticlesController extends AppController
                 ImageTool::resize(array(
                     'input' => $pathimg,
                     'output' => $pathimg,
-                    'width' =>100,
-                    'height' =>100,
+                    'width' =>600,
+                    'height' =>200,
                     'mode' => 'fit'
                 ));
                 $this->request->data['picture_url'] = $rename;
@@ -107,6 +107,23 @@ class ArticlesController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            # upload image
+            if (!empty($_FILES['picture_url']) ) {
+                $img = $_FILES['picture_url']['name'];
+                $extention = explode('.', $img);
+                $rename = str_replace($extention[0], Time::now()->format("Ymdhms"), $img);
+                $temp = $_FILES['picture_url']['tmp_name'];
+                $pathimg = WWW_ROOT . "img" . DS . "article" . DS . $rename;
+                move_uploaded_file($temp, $pathimg);
+                ImageTool::resize(array(
+                    'input' => $pathimg,
+                    'output' => $pathimg,
+                    'width' =>600,
+                    'height' =>200,
+                    'mode' => 'fit'
+                ));
+                $this->request->data['picture_url'] = $rename;
+            }
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));

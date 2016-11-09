@@ -2,6 +2,9 @@
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
+require_once(ROOT . DS . 'src'. DS . 'Controller'. DS . 'Component' . DS . 'ImageTool.php');
+use ImageTool;
 
 /**
  * Users Controller
@@ -37,11 +40,18 @@ class UsersController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('Categories');
         $user = $this->Users->get($id, [
             'contain' => ['Roles', 'Articles']
         ]);
+        $categorie = $this->Categories->find('all');
+        foreach ($categorie as $cat)
+        {
+            $newCategorie[$cat->id] = $cat->description;
+        }
 
         $this->set('user', $user);
+        $this->set(compact('newCategorie'));
         $this->set('_serialize', ['user']);
     }
 
@@ -81,6 +91,22 @@ class UsersController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            if (!empty($_FILES['picture_url']) ) {
+                $img = $_FILES['picture_url']['name'];
+                $extention = explode('.', $img);
+                $rename = str_replace($extention[0],$user->id, $img);
+                $temp = $_FILES['picture_url']['tmp_name'];
+                $pathimg = WWW_ROOT . "img" . DS . "user" . DS . $rename;
+                move_uploaded_file($temp, $pathimg);
+                ImageTool::resize(array(
+                    'input' => $pathimg,
+                    'output' => $pathimg,
+                    'width' =>300,
+                    'height' => 300,
+                    'mode' => 'fit'
+                ));
+                $this->request->data['picture_url'] = $rename;
+            }
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));

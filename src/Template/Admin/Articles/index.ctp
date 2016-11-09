@@ -24,8 +24,11 @@
                 <?php foreach ($articles as $article): ?>
                     <?php if ($article->published == true) { ?>
                         <tr>
-                            <td><img class="img-responsive" style="" src=" ../img/article/<?= $article->picture_url ?>">
-                            </td>
+                            <?php if ($article->picture_url != NULL) { ?>
+                                <td><img class="img-responsive" style="" src=" ../img/article/<?= $article->picture_url ?>"></td>
+                            <?php }else {?>
+                                <td><img class="img-responsive" style="" src=" ../../img/article/default.png"></td>
+                            <?php }?>
                             <td><?= h($article->name) ?></td>
                             <td><?= $article->has('user') ? $this->Html->link($article->user->username, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
                             <td><?= $article->has('category') ? $this->Html->link($article->category->description, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></td>
@@ -83,7 +86,11 @@
                 <?php foreach ($articles as $article): ?>
                     <?php if ($article->published == false) { ?>
                         <tr>
-                            <td><img class="img-responsive" style="" src=" ../img/article/<?= $article->picture_url ?>">
+                            <?php if ($article->picture_url != NULL) { ?>
+                                <td><img class="img-responsive" style="15%" src=" ../img/article/<?= $article->picture_url ?>"></td>
+                            <?php }else {?>
+                                <td><img class="img-responsive" style="" src=" ../../img/article/default.png"></td>
+                            <?php }?>
                             </td>
                             <td><?= h($article->name) ?></td>
                             <td><?= $article->has('user') ? $this->Html->link($article->user->username, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
