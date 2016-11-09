@@ -70,8 +70,8 @@ class ArticlesController extends AppController
                 ImageTool::resize(array(
                     'input' => $pathimg,
                     'output' => $pathimg,
-                    'width' => 100,
-                    'height' => 100,
+                    'width' => 1000,
+                    'height' => 400,
                     'mode' => 'fit'
                 ));
                 $this->request->data['picture_url'] = $rename;
@@ -117,8 +117,8 @@ class ArticlesController extends AppController
                     ImageTool::resize(array(
                         'input' => $pathimg,
                         'output' => $pathimg,
-                        'width' => 100,
-                        'height' => 100,
+                        'width' => 1000,
+                        'height' => 400,
                         'mode' => 'fit'
                     ));
                     $this->request->data['picture_url'] = $rename;
