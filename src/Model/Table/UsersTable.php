@@ -79,10 +79,6 @@ class UsersTable extends Table
             ->requirePresence('email', 'create')
             ->notEmpty('email');
 
-        $validator
-            ->requirePresence('picture_url', 'create')
-            ->notEmpty('picture_url');
-
         return $validator;
     }
 

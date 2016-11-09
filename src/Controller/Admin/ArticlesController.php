@@ -59,7 +59,8 @@ class ArticlesController extends AppController
         $article = $this->Articles->newEntity();
         if ($this->request->is('post')) {
             $this->request->data['user_id'] = $this->Auth->User('id');
-            if (!empty($_FILES['picture_url']) ) {
+            # upload image
+            if (!empty($_FILES['picture_url'])) {
                 $img = $_FILES['picture_url']['name'];
                 $extention = explode('.', $img);
                 $rename = str_replace($extention[0], $article->id, $img);
@@ -69,8 +70,8 @@ class ArticlesController extends AppController
                 ImageTool::resize(array(
                     'input' => $pathimg,
                     'output' => $pathimg,
-                    'width' =>100,
-                    'height' =>100,
+                    'width' => 100,
+                    'height' => 100,
                     'mode' => 'fit'
                 ));
                 $this->request->data['picture_url'] = $rename;
@@ -122,7 +123,6 @@ class ArticlesController extends AppController
                     ));
                     $this->request->data['picture_url'] = $rename;
                 }
-
             $article = $this->Articles->patchEntity($article, $this->request->data);
             if ($this->Articles->save($article)) {
                 $this->Flash->success(__('The article has been saved.'));

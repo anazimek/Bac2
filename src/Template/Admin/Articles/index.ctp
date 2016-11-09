@@ -87,7 +87,7 @@
                     <?php if ($article->published == false) { ?>
                         <tr>
                             <?php if ($article->picture_url != NULL) { ?>
-                                <td><img class="img-responsive" style="15%" src=" ../img/article/<?= $article->picture_url ?>"></td>
+                                <td><img class="img-responsive" style="" src=" ../img/article/<?= $article->picture_url ?>"></td>
                             <?php }else {?>
                                 <td><img class="img-responsive" style="" src=" ../../img/article/default.png"></td>
                             <?php }?>

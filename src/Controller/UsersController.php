@@ -60,7 +60,7 @@ class UsersController extends AppController
             if (!empty($_FILES['picture_url']) ) {
                 $img = $_FILES['picture_url']['name'];
                 $extention = explode('.', $img);
-                $rename = str_replace($extention[0], Time::now()->format("Ymdhms"), $img);
+                $rename = str_replace($extention[0], $user->id, $img);
                 $temp = $_FILES['picture_url']['tmp_name'];
                 $pathimg = WWW_ROOT . "img" . DS . "user" . DS . $rename;
                 move_uploaded_file($temp, $pathimg);
@@ -76,7 +76,7 @@ class UsersController extends AppController
 
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view',$user->id]);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
@@ -99,6 +99,23 @@ class UsersController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
+            # upload image
+            if (!empty($_FILES['picture_url']) ) {
+                $img = $_FILES['picture_url']['name'];
+                $extention = explode('.', $img);
+                $rename = str_replace($extention[0], $user->id, $img);
+                $temp = $_FILES['picture_url']['tmp_name'];
+                $pathimg = WWW_ROOT . "img" . DS . "user" . DS . $rename;
+                move_uploaded_file($temp, $pathimg);
+                ImageTool::resize(array(
+                    'input' => $pathimg,
+                    'output' => $pathimg,
+                    'width' =>100,
+                    'height' => 100,
+                    'mode' => 'fit'
+                ));
+                $this->request->data['picture_url'] = $rename;
+            }
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
@@ -138,7 +155,11 @@ class UsersController extends AppController
             $user = $this->Auth->identify();
             if ($user) {
                 $this->Auth->setUser($user);
+                if($this->Auth->user('role_id')== 1){
                 return $this->redirect(['controller' => 'Articles','action' => 'index', 'prefix' => 'admin']);
+                }else{
+                    return $this->redirect(['controller' => 'Users','action' => 'view', $this->Auth->user('id')]);
+                }
             }
             $this->Flash->error(__('Invalid username or password, try again'));
         }
@@ -146,6 +167,7 @@ class UsersController extends AppController
 
     public function logout()
     {
+        $this->request->session()->destroy();
         return $this->redirect(['controller' => 'Articles','action' => 'index']);
     }
 
