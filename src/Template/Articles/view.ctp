@@ -1,50 +1,40 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Article'), ['action' => 'edit', $article->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Article'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Articles'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Article'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Categories'), ['controller' => 'Categories', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Category'), ['controller' => 'Categories', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="articles view large-9 medium-8 columns content">
-    <h3><?= h($article->name) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Name') ?></th>
-            <td><?= h($article->name) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Picture Url') ?></th>
-            <td><?= h($article->picture_url) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $article->has('user') ? $this->Html->link($article->user->id, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Category') ?></th>
-            <td><?= $article->has('category') ? $this->Html->link($article->category->id, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($article->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($article->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modified') ?></th>
-            <td><?= h($article->modified) ?></td>
-        </tr>
-    </table>
+<style>
+    #cadre{
+        border: 1px solid black;
+        -moz-box-shadow: 0 10px 20px #ccc;
+        -webkit-box-shadow: 0 10px 20px #ccc;
+        box-shadow: 30px 30px 20px #ccc;
+    }
+</style>
+
+<div class="articles content">
+    <h1 class="text-center"><?= h($article->name) ?></h1>
     <div class="row">
-        <h4><?= __('Description') ?></h4>
-        <?= $this->Text->autoParagraph(h($article->description)); ?>
+        <div class="col-md-6 col-md-offset-3" id="cadre">
+            <?php if ($article->picture_url != NULL) { ?>
+                <img class="img-responsive" src=" ../../../../img/article/<?= $article->picture_url ?>">
+            <?php } else { ?>
+            <?php } ?>
+            <div class="col-md-12">
+                <?= $this->Text->autoParagraph(h($article->description)); ?>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-4 text-center">
+                    <p><i class="fa fa-pencil-square-o"
+                          aria-hidden="true"></i>Auteur: <?= $article->has('user') ? ($article->user->username) : '' ?>
+                    </p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <p><i class="fa fa-bookmark"
+                          aria-hidden="true"></i>Catégorie: <?= $article->has('category') ? ($article->category->description) : '' ?>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <p><i class="fa fa-calendar"
+                          aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?></p>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
 </div>
