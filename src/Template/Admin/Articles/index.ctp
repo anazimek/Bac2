@@ -34,23 +34,54 @@
                             <td><?= $article->has('category') ? $this->Html->link($article->category->description, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></td>
                             <td><?= h($article->created) ?></td>
                             <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-xs btn-danger dropdown-toggle" type="button"
-                                            data-toggle="dropdown"
-                                            aria-expanded="false"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-left" role="menu">
-                                        <i></i> <a
-                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'view', $article->id]); ?>">Profil</a><br>
-                                        <i></i> <a
-                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a><br>
-                                        <i></i>
-                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]) ?>
-                                    </ul>
-                                </div>
+                                <a type="button" class="btn btn-success" data-toggle="modal" data-target="#<?= $article->id?>">Visualiser</a>
                             </td>
                         </tr>
+                        <div class="modal fade" id="<?= $article->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel"><h1 class="text-center"><?= h($article->name) ?></h1></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="" id="cadre">
+                                                <?php if ($article->picture_url != NULL) { ?>
+                                                    <img class="img-responsive" src=" ../../../../img/article/<?= $article->picture_url ?>">
+                                                <?php } else { ?>
+                                                <?php } ?>
+                                                <div class="col-md-12">
+                                                    <?= $this->Text->autoParagraph(h($article->description)); ?>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4 text-center">
+                                                        <p><i class="fa fa-pencil-square-o"
+                                                              aria-hidden="true"></i>Auteur: <?= $article->has('user') ? ($article->user->username) : '' ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <p><i class="fa fa-bookmark"
+                                                              aria-hidden="true"></i>Catégorie: <?= $article->has('category') ? ($article->category->description) : '' ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p><i class="fa fa-calendar"
+                                                              aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-warning" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
+                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id ], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id),'class' => 'btn btn-danger']) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php } ?>
                 <?php endforeach; ?>
                 </tbody>
@@ -97,23 +128,54 @@
                             <td><?= $article->has('category') ? $this->Html->link($article->category->description, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></td>
                             <td><?= h($article->created) ?></td>
                             <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-xs btn-danger dropdown-toggle" type="button"
-                                            data-toggle="dropdown"
-                                            aria-expanded="false"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-left" role="menu">
-                                        <i></i> <a
-                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'view', $article->id]); ?>">Profil</a><br>
-                                        <i></i> <a
-                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a><br>
-                                        <i></i>
-                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id)]) ?>
-                                    </ul>
-                                </div>
+                                <a type="button" class="btn btn-success" data-toggle="modal" data-target="#<?= $article->id?>">Visualiser</a>
                             </td>
                         </tr>
+                        <div class="modal fade" id="<?= $article->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h4 class="modal-title" id="myModalLabel"><h1 class="text-center"><?= h($article->name) ?></h1></h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+                                            <div class="" id="cadre">
+                                                <?php if ($article->picture_url != NULL) { ?>
+                                                    <img class="img-responsive" src=" ../../../../img/article/<?= $article->picture_url ?>">
+                                                <?php } else { ?>
+                                                <?php } ?>
+                                                <div class="col-md-12">
+                                                    <?= $this->Text->autoParagraph(h($article->description)); ?>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="col-md-4 text-center">
+                                                        <p><i class="fa fa-pencil-square-o"
+                                                              aria-hidden="true"></i>Auteur: <?= $article->has('user') ? ($article->user->username) : '' ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4 text-center">
+                                                        <p><i class="fa fa-bookmark"
+                                                              aria-hidden="true"></i>Catégorie: <?= $article->has('category') ? ($article->category->description) : '' ?>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <p><i class="fa fa-calendar"
+                                                              aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a class="btn btn-warning" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
+                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id ], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id),'class' => 'btn btn-danger']) ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     <?php } ?>
                 <?php endforeach; ?>
                 </tbody>
