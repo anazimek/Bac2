@@ -97,7 +97,8 @@ Router::prefix('admin', function ($routes) {
     $routes->connect('/articles', ['controller' => 'Articles', 'action' => 'index']);
     $routes->connect('/articles/ajouter', ['controller' => 'Articles', 'action' => 'add']);
     $routes->connect('/articles/editer/*', ['controller' => 'Articles', 'action' => 'edit']);
-    $routes->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);;
+    $routes->connect('/categories', ['controller' => 'Categories', 'action' => 'index']);
+    $routes->connect('/commentaire', ['controller' => 'Comments', 'action' => 'index']);
     $routes->fallbacks(DashedRoute::class);
 });
 

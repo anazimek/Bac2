@@ -1,48 +1,35 @@
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Comment'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Articles'), ['controller' => 'Articles', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Article'), ['controller' => 'Articles', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="comments index large-9 medium-8 columns content">
+<?php $this->layout = 'back'; ?>
+<div class="comments content">
     <h3><?= __('Comments') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+    <table class="table table-bordered">
         <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('article_id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('created') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
+        <tr>
+            <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('article_id') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('description') ?></th>
+            <th scope="col"><?= $this->Paginator->sort('created') ?></th>
+            <th scope="col" class="actions"><?= __('Actions') ?></th>
+        </tr>
         </thead>
         <tbody>
-            <?php foreach ($comments as $comment): ?>
+        <?php foreach ($comments as $comment): ?>
             <tr>
-                <td><?= $this->Number->format($comment->id) ?></td>
-                <td><?= $comment->has('user') ? $this->Html->link($comment->user->id, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
+                <td><?= $comment->has('user') ? $this->Html->link($comment->user->username, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
                 <td><?= $comment->has('article') ? $this->Html->link($comment->article->name, ['controller' => 'Articles', 'action' => 'view', $comment->article->id]) : '' ?></td>
                 <td><?= h($comment->description) ?></td>
                 <td><?= h($comment->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $comment->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $comment->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id)]) ?>
+                <td>
+                    <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id),'class' => 'btn btn-danger']) ?>
                 </td>
             </tr>
-            <?php endforeach; ?>
+        <?php endforeach; ?>
         </tbody>
     </table>
     <div class="paginator">
         <ul class="pagination">
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+            <?= $this->Paginator->prev('< ' . __('precedent')) ?>
             <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
+            <?= $this->Paginator->next(__('suivant') . ' >') ?>
         </ul>
         <p><?= $this->Paginator->counter() ?></p>
     </div>
