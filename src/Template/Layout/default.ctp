@@ -47,9 +47,9 @@
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <?php if (isset($this->request->session()->read('Auth')['User']['id'])): ?>
-                        <a class="navbar-brand" id="connexion"
+                        <a class="navbar-brand pull-right" id="connexion"
                            href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'logout']) ?>">Deconnexion</a>
-                        <a class="navbar-brand"
+                        <a class="navbar-brand pull-right"
                            href="/utilisateur/profil/<?= $this->request->session()->read('Auth')['User']['id'] ?>">Mon
                             Profil</a>
                     <?php else: ?>
