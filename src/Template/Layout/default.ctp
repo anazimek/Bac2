@@ -61,9 +61,7 @@
         </div>
     </nav>
 </header>
-
-<body>
-
+<body style="background-color: cornflowerblue">
 <!--content-->
 <div class="content">
     <div class="container">

@@ -14,6 +14,7 @@ use Cake\ORM\Entity;
  * @property int $categorie_id
  * @property \Cake\I18n\Time $created
  * @property \Cake\I18n\Time $modified
+ * @property bool $published
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Category $category

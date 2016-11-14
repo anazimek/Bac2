@@ -11,6 +11,7 @@ use Cake\Validation\Validator;
  *
  * @property \Cake\ORM\Association\BelongsTo $Roles
  * @property \Cake\ORM\Association\HasMany $Articles
+ * @property \Cake\ORM\Association\HasMany $Comments
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -42,6 +43,9 @@ class UsersTable extends Table
             'joinType' => 'INNER'
         ]);
         $this->hasMany('Articles', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('Comments', [
             'foreignKey' => 'user_id'
         ]);
     }
@@ -78,6 +82,9 @@ class UsersTable extends Table
             ->email('email')
             ->requirePresence('email', 'create')
             ->notEmpty('email');
+
+        $validator
+            ->allowEmpty('picture_url');
 
         return $validator;
     }
