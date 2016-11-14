@@ -4,6 +4,7 @@
         -moz-box-shadow: 0 10px 20px #ccc;
         -webkit-box-shadow: 0 10px 20px #ccc;
         box-shadow: 30px 30px 20px #ccc;
+        background-color: white;
     }
 </style>
 
