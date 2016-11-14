@@ -1,6 +1,5 @@
 <div class="articles content">
     <style>
-
         .well {
             color: black;
         }
@@ -18,7 +17,6 @@
         img:hover {
             color: cornflowerblue;
         }
-
     </style>
     <h3><?= __('Articles') ?></h3>
     <div class="row">
@@ -32,7 +30,7 @@
                                     <img class="img-responsive" src="../../img/article/<?= h($article->picture_url) ?>">
                                 </div>
                                 <div class="text-center"
-                                     style="position:absolute;top:92px;z-index:2;background-color: #5cb85c;width: 60px;color: white">
+                                     style="position:absolute;top:86px;z-index:2;background-color: #5cb85c;width: 60px;color: white">
                                     <?= $article->has('category') ? ($article->category->description) : '' ?>
                                 </div>
                             </div>
@@ -56,10 +54,36 @@
                                         echo $description;
                                         echo (strlen($description) < strlen($article->description)) ? '...' : ''; ?></p>
                                 </div>
-                                <!--
-                                <!--<a class=" btn btn-success"
-                               href="<?= $this->url->Build(['controller' => 'Articles', 'action' => 'view', $article->id]) ?>">Voir
-                                l'article</a>-->
+                            </div>
+                            <div class="col-md-12">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <?php $nb = 0; ?>
+                                        <?php foreach ($article->comments as $comment): ?>
+                                            <?php count($comment->description);
+                                            $nb++;
+                                            ?>
+                                        <?php endforeach; ?>
+                                        <a class="btn btn-success btn-xs comments" id="<?= $article->id?>">Afficher les
+                                            commentaires <?= $nb; ?></a>
+                                    </div>
+                                    <div class="panel-body" id="commentaire-<?= $article->id?>" style="display: none">
+                                        <?php foreach ($article->comments as $comment): ?>
+                                            <div class="well" >
+                                                <p>Commentaire de <span
+                                                        style="font-weight: 800"><?= $comment->user->username ?></span>
+                                                </p>
+                                                <div><?= $comment->description ?></div>
+                                            </div>
+                                        <?php endforeach; ?>
+                                        <?php if (isset($this->request->session()->read('Auth')['User']['id']) == 2) { ?>
+                                            <?= $this->Form->create($comments, ['url' => ['controller' => 'Comments', 'action' => 'add', $article->id]]) ?>
+                                                <?= $this->Form->input('description', ['label' => false, 'placeholder' => 'Nouveau Commentaire']); ?>
+                                                <?= $this->Form->button(__('Envoyer')) ?>
+                                            <?= $this->Form->end() ?>
+                                        <?php } ?>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </a>
@@ -76,3 +100,13 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $("a.comments").css('cursor', 'Pointer');
+        $('a.comments').bind('click', function () {
+            var currentId = $(this).attr('id');
+            $('#commentaire-' + currentId + '').toggle('slow');
+            // $(this).attr('id');  gets the id of a clicked link that has a class of menu
+        });
+    });
+</script>

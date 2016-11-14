@@ -26,12 +26,16 @@ class ArticlesController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Comments');
         $this->paginate = [
-            'contain' => ['Users', 'Categories']
+            'contain' => ['Users', 'Categories','Comments.Users'],
         ];
-        $articles = $this->paginate($this->Articles);
+        $articles = $this->paginate($this->Articles->find('all', [
+            'order' => ['Articles.created' => 'desc']
+        ]));
+        $comments = $this->Comments->NewEntity();
 
-        $this->set(compact('articles'));
+        $this->set(compact('articles','comments'));
         $this->set('_serialize', ['articles']);
     }
 
@@ -45,7 +49,7 @@ class ArticlesController extends AppController
     public function view($id = null)
     {
         $article = $this->Articles->get($id, [
-            'contain' => ['Users', 'Categories']
+            'contain' => ['Users', 'Categories','Comments']
         ]);
 
         $this->set('article', $article);

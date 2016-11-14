@@ -7,23 +7,22 @@ use Cake\ORM\Table;
 use Cake\Validation\Validator;
 
 /**
- * Articles Model
+ * Comments Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Users
- * @property \Cake\ORM\Association\BelongsTo $Categories
- * @property \Cake\ORM\Association\HasMany $Comments
+ * @property \Cake\ORM\Association\BelongsTo $Articles
  *
- * @method \App\Model\Entity\Article get($primaryKey, $options = [])
- * @method \App\Model\Entity\Article newEntity($data = null, array $options = [])
- * @method \App\Model\Entity\Article[] newEntities(array $data, array $options = [])
- * @method \App\Model\Entity\Article|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
- * @method \App\Model\Entity\Article patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
- * @method \App\Model\Entity\Article[] patchEntities($entities, array $data, array $options = [])
- * @method \App\Model\Entity\Article findOrCreate($search, callable $callback = null)
+ * @method \App\Model\Entity\Comment get($primaryKey, $options = [])
+ * @method \App\Model\Entity\Comment newEntity($data = null, array $options = [])
+ * @method \App\Model\Entity\Comment[] newEntities(array $data, array $options = [])
+ * @method \App\Model\Entity\Comment|bool save(\Cake\Datasource\EntityInterface $entity, $options = [])
+ * @method \App\Model\Entity\Comment patchEntity(\Cake\Datasource\EntityInterface $entity, array $data, array $options = [])
+ * @method \App\Model\Entity\Comment[] patchEntities($entities, array $data, array $options = [])
+ * @method \App\Model\Entity\Comment findOrCreate($search, callable $callback = null)
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class ArticlesTable extends Table
+class CommentsTable extends Table
 {
 
     /**
@@ -36,8 +35,8 @@ class ArticlesTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('articles');
-        $this->displayField('name');
+        $this->table('comments');
+        $this->displayField('id');
         $this->primaryKey('id');
 
         $this->addBehavior('Timestamp');
@@ -46,12 +45,9 @@ class ArticlesTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Categories', [
-            'foreignKey' => 'categorie_id',
+        $this->belongsTo('Articles', [
+            'foreignKey' => 'article_id',
             'joinType' => 'INNER'
-        ]);
-        $this->hasMany('Comments', [
-            'foreignKey' => 'article_id'
         ]);
     }
 
@@ -68,20 +64,8 @@ class ArticlesTable extends Table
             ->allowEmpty('id', 'create');
 
         $validator
-            ->requirePresence('name', 'create')
-            ->notEmpty('name');
-
-        $validator
-            ->allowEmpty('picture_url');
-
-        $validator
             ->requirePresence('description', 'create')
             ->notEmpty('description');
-
-        $validator
-            ->boolean('published')
-            ->requirePresence('published', 'create')
-            ->notEmpty('published');
 
         return $validator;
     }
@@ -96,7 +80,7 @@ class ArticlesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'));
-        $rules->add($rules->existsIn(['categorie_id'], 'Categories'));
+        $rules->add($rules->existsIn(['article_id'], 'Articles'));
 
         return $rules;
     }
