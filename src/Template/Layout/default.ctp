@@ -13,6 +13,7 @@
     <title>Blog d'Alexis</title>
     <!-- couleur rose: #ed1450 -->
     <!--CSS styles-->
+    <?= $this->Html->css('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css') ?>
     <?= $this->Html->css('../css/font-awesome.css') ?>
     <?= $this->Html->css('../css/font-awesome.min.css') ?>
     <?= $this->Html->css('../css/bootstrap.min.css') ?>
@@ -43,7 +44,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand active" href="/">Accueil</a>
+                    <a href="/"><?= $this->html->image('logo1.PNG')?></a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <?php if (isset($this->request->session()->read('Auth')['User']['id'])): ?>
@@ -52,6 +53,7 @@
                         <a class="navbar-brand pull-right"
                            href="/utilisateur/profil/<?= $this->request->session()->read('Auth')['User']['id'] ?>">Mon
                             Profil</a>
+                        <?= $this->html->image('user/'.$this->request->session()->read('Auth')['User']['picture_url'],['class' => 'navbar-brand pull-right'])?>
                     <?php else: ?>
                         <a class="navbar-brand pull-right" id="connexion" href="/utilisateur/connexion">Connexion</a>
                         <a class="navbar-brand pull-right" href="/utilisateur/s'inscrire">S'inscrire</a>
@@ -61,7 +63,7 @@
         </div>
     </nav>
 </header>
-<body style="background-color: gray">
+<body style="background-color: #C0C0C0">
 <!--content-->
 <div class="content">
     <div class="container">

@@ -45,7 +45,7 @@ class UsersController extends AppController
     public function view($id = null)
     {
         $user = $this->Users->get($id, [
-            'contain' => ['Roles', 'Articles']
+            'contain' => ['Roles', 'Comments.Users','Comments.Articles']
         ]);
 
         $this->set('user', $user);
@@ -163,7 +163,7 @@ class UsersController extends AppController
                 if($this->Auth->user('role_id')== 1){
                 return $this->redirect(['controller' => 'Articles','action' => 'index', 'prefix' => 'admin']);
                 }else{
-                    return $this->redirect(['controller' => 'Users','action' => 'view', $this->Auth->user('id')]);
+                    return $this->redirect(['controller' => 'Articles','action' => 'index']);
                 }
             }
             $this->Flash->error(__('Invalid username or password, try again'));
