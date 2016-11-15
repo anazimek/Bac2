@@ -1,21 +1,13 @@
 <div class="articles content">
     <style>
-        .well {
-            color: black;
-        }
-
         .well:hover {
-            -moz-box-shadow: 0 10px 20px #ccc;
-            -webkit-box-shadow: 0 10px 20px #ccc;
-            box-shadow: 0 10px 20px #ccc;
+            -moz-box-shadow: 20px 20px 20px #ccc;
+            -webkit-box-shadow: 20px 20px 20px #ccc;
+            box-shadow: 20px 20px 20px #000000;
         }
 
         .article:hover {
-            color: cornflowerblue;
-        }
-
-        img:hover {
-            color: cornflowerblue;
+            color: red;
         }
     </style>
     <div class="row">
@@ -63,8 +55,8 @@
                                             $nb++;
                                             ?>
                                         <?php endforeach; ?>
-                                        <a class="btn btn-success btn-xs comments" id="<?= $article->id?>">Afficher les
-                                            commentaires <?= $nb; ?></a>
+                                        <a class="btn btn-success btn-xs comments" id="<?= $article->id?>"><i class="fa fa-comments" aria-hidden="true">
+                                            </i> <?= $nb; ?></a>
                                     </div>
                                     <div class="panel-body" id="commentaire-<?= $article->id?>" style="display: none">
                                         <?php foreach ($article->comments as $comment): ?>

@@ -49,12 +49,14 @@
                             <td><img class="img-responsive" style="" src=" ../../../img/article/default.png"></td>
                         <?php }?>
                         <td><?= h($articles->name) ?></td>
-                        <td><?= h($articles->description) ?></td>
+                        <td><?php $description = mb_substr($articles->description, 0, 200);
+                            echo $description;
+                            echo (strlen($description) < strlen($articles->description)) ? '...' : ''; ?></td>
                         <td><?= h($user->username) ?></td>
                         <td><?= $newCategorie[$articles->categorie_id] ?></td>
                         <td><?= h($articles->created) ?></td>
                         <td><?= h($articles->modified) ?></td>
-                        <td><?= $articles->published ? __('Brouillon') : __('Publier'); ?></td>
+                        <td><?= $articles->published ? __('Publier') : __('Brouillon'); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </table>
