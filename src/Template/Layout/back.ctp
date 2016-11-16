@@ -67,13 +67,14 @@
 <footer style="background-color: black">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-8">
-                <h4>1 Avenue Général de Gaulle, 88000 Épinal</h4>
-                <p>03 29 33 88 88 </p>
+            <div class="col-md-6">
+
             </div>
-            <div class="col-md-4">
-                <h4>Vous voulez en savoir plus?</h4>
-                <p>alexis.nazimek88@gmail.com</p>
+            <div class="col-md-6">
+                <h4 style="color: white">Pour me Contacter:</h4>
+                <a target="_blank" href="https://www.facebook.com/profile.php?id=1212441263"><i class=" fa fa-facebook-square fa-3x" title="Facebook" href="https://www.facebook.com/profile.php?id=1212441263"></i></a>
+                <a target="_blank" href="https://twitter.com/AlexisNazimek"><i class=" fa fa-twitter-square fa-3x" title="Twitter" ></i></a>
+                <a target="_blank" href="https://www.instagram.com/alex_nzk/"><i class=" fa fa-instagram fa-3x" title="Instagram" ></i></a>
             </div>
         </div>
 </footer>
