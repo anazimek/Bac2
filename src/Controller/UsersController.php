@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\Email;
 use Cake\I18n\Time;
 require_once(ROOT . DS . 'src'. DS . 'Controller'. DS . 'Component' . DS . 'ImageTool.php');
 use ImageTool;
@@ -81,12 +82,22 @@ class UsersController extends AppController
 
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
+
+                $email = new Email();
+                $email->viewVars(['users' => $user])
+                    ->template('welcome')
+                    ->emailFormat('html')
+                    ->to($user->email)
+                    ->subject('confirmation')
+                    ->send();
+
+                $this->Flash->success('Un mail vous a été envoyé.');
                 return $this->redirect(['action' => 'view',$user->id]);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error('Impossible de créer votre compte');
             }
         }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
         $this->set('_serialize', ['user']);
     }
