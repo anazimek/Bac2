@@ -100,9 +100,14 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        if($id!=$this->Auth->User('id')){
+            return $this->redirect(['controller'=>'Articles', 'action' => 'index',]);
+        }
+
         $user = $this->Users->get($id, [
             'contain' => []
         ]);
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             # upload image
             if (!empty($_FILES['picture_url']) ) {
@@ -125,7 +130,7 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view', $user->id]);
             } else {
                 $this->Flash->error(__('The user could not be saved. Please, try again.'));
             }
