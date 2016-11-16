@@ -3,7 +3,7 @@
         .well:hover {
             -moz-box-shadow: 20px 20px 20px #ccc;
             -webkit-box-shadow: 20px 20px 20px #ccc;
-            box-shadow: 20px 20px 20px #000000;
+            box-shadow: 10px 10px 10px #000000;
         }
 
         .article:hover {

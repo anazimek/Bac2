@@ -56,6 +56,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/utilisateur/s\'inscrire', ['controller' => 'Users', 'action' => 'add']);
     $routes->connect('/utilisateur/profil/*', ['controller' => 'Users', 'action' => 'view']);
     $routes->connect('/utilisateur/editer/*', ['controller' => 'Users', 'action' => 'edit']);
+    $routes->connect('/utilisateur/contact', ['controller' => 'Users', 'action' => 'contact']);
 
     /**
      * ...and connect the rest of 'Pages' controller's URLs.

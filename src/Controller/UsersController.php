@@ -18,6 +18,7 @@ class UsersController extends AppController
     {
         parent::initialize();
         $this->Auth->allow('add');
+        $this->Auth->allow('contact');
     }
 
     /**
@@ -192,4 +193,25 @@ class UsersController extends AppController
         return $this->redirect(['controller' => 'Articles','action' => 'index']);
     }
 
+    public function contact()
+    {
+        if($this->request->is('post'))
+        {
+            $email = new Email();
+            $email->from($this->request->data['email'])
+                ->to('blogdalexis@gmail.com')
+                ->subject('Nouveau Message de '.$this->request->data['nom']);
+            if($email->send($this->request->data['message'].'
+            Adresse Mail : '.$this->request->data['email']))
+            {
+                $this->Flash->success('Votre mail a été envoyé.');
+                return $this->redirect(['controller' => 'Articles','action' => 'index']);
+            }
+            else{
+
+                $this->Flash->error('Votre mail n\'a pas été envoyé.');
+            }
+
+        }
+    }
 }
