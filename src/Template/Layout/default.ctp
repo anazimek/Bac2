@@ -44,7 +44,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><?= $this->html->image('logo1.PNG')?></a>
+                    <a href="/"><?= $this->html->image('logo1.PNG') ?></a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <?php if (isset($this->request->session()->read('Auth')['User']['id'])): ?>
@@ -53,7 +53,7 @@
                         <a class="navbar-brand pull-right"
                            href="/utilisateur/profil/<?= $this->request->session()->read('Auth')['User']['id'] ?>">Mon
                             Profil</a>
-                        <?= $this->html->image('user/'.$this->request->session()->read('Auth')['User']['picture_url'],['class' => 'navbar-brand pull-right'])?>
+                        <?= $this->html->image('user/' . $this->request->session()->read('Auth')['User']['picture_url'], ['class' => 'navbar-brand pull-right']) ?>
                     <?php else: ?>
                         <a class="navbar-brand pull-right" id="connexion" href="/utilisateur/connexion">Connexion</a>
                         <a class="navbar-brand pull-right" href="/utilisateur/s'inscrire">S'inscrire</a>
@@ -76,9 +76,18 @@
 </body>
 
 <footer>
-    <div class="container-fluid" style="background-color: cornflowerblue">
+    <div class="container-fluid" style="background-color: black">
         <div class="row">
+            <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+                <h4 style="color: white">Pour me Contacter:</h4>
+                <a><i class=" fa fa-facebook-square fa-3x" title="Facebook"></i></a>
+                <a><i class=" fa fa-twitter-square fa-3x" title="Twitter"></i></a>
+                <a><i class=" fa fa-instagram fa-3x" title="Instagram"></i></a>
+            </div>
         </div>
+    </div>
 </footer>
 
 <!--JS libraries-->

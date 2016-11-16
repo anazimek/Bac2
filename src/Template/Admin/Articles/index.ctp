@@ -25,32 +25,38 @@
                     <?php if ($article->published == true) { ?>
                         <tr>
                             <?php if ($article->picture_url != NULL) { ?>
-                                <td style="max-width: 100px"><img class="img-responsive" style="" src=" ../img/article/<?= $article->picture_url ?>"></td>
-                            <?php }else {?>
+                                <td style="max-width: 100px"><img class="img-responsive" style=""
+                                                                  src=" ../img/article/<?= $article->picture_url ?>">
+                                </td>
+                            <?php } else { ?>
                                 <td><img class="img-responsive" style="" src=" ../../img/article/default.png"></td>
-                            <?php }?>
+                            <?php } ?>
                             <td><?= h($article->name) ?></td>
                             <td><?= $article->has('user') ? $this->Html->link($article->user->username, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
                             <td><?= $article->has('category') ? $this->Html->link($article->category->description, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></td>
                             <td><?= h($article->created) ?></td>
                             <td>
-                                <a type="button" class="btn btn-success" data-toggle="modal" data-target="#<?= $article->id?>">Visualiser</a>
+                                <a type="button" class="btn btn-success" data-toggle="modal"
+                                   data-target="#<?= $article->id ?>">Visualiser</a>
                             </td>
                         </tr>
-                        <div class="modal fade" id="<?= $article->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="<?= $article->id ?>" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h4 class="modal-title" id="myModalLabel"><h1 class="text-center"><?= h($article->name) ?></h1></h4>
+                                        <h4 class="modal-title" id="myModalLabel"><h1
+                                                class="text-center"><?= h($article->name) ?></h1></h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="" id="cadre">
                                                 <?php if ($article->picture_url != NULL) { ?>
-                                                    <img class="img-responsive" src=" ../../../../img/article/<?= $article->picture_url ?>">
+                                                    <img class="img-responsive"
+                                                         src=" ../../../../img/article/<?= $article->picture_url ?>">
                                                 <?php } else { ?>
                                                 <?php } ?>
                                                 <div class="col-md-12">
@@ -69,15 +75,28 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <p><i class="fa fa-calendar"
-                                                              aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?></p>
+                                                              aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?>
+                                                        </p>
                                                     </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <?php foreach ($article->comments as $comment): ?>
+                                                        <div class="well" >
+                                                            <p>Commentaire de <span
+                                                                    style="font-weight: 800"><?= $comment->user->username ?></span>
+                                                            </p>
+                                                            <div><?= $comment->description ?></div>
+                                                            <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger']) ?>
+                                                        </div>
+                                                    <?php endforeach; ?>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a class="btn btn-warning" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
-                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id ], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id),'class' => 'btn btn-danger']) ?>
+                                        <a class="btn btn-warning"
+                                           href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
+                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id), 'class' => 'btn btn-danger']) ?>
                                     </div>
                                 </div>
                             </div>
@@ -118,33 +137,39 @@
                     <?php if ($article->published == false) { ?>
                         <tr>
                             <?php if ($article->picture_url != NULL) { ?>
-                                <td style="max-width: 100px"><img class="img-responsive" style="" src=" ../img/article/<?= $article->picture_url ?>"></td>
-                            <?php }else {?>
+                                <td style="max-width: 100px"><img class="img-responsive" style=""
+                                                                  src=" ../img/article/<?= $article->picture_url ?>">
+                                </td>
+                            <?php } else { ?>
                                 <td><img class="img-responsive" style="" src=" ../../img/article/default.png"></td>
-                            <?php }?>
+                            <?php } ?>
                             </td>
                             <td><?= h($article->name) ?></td>
                             <td><?= $article->has('user') ? $this->Html->link($article->user->username, ['controller' => 'Users', 'action' => 'view', $article->user->id]) : '' ?></td>
                             <td><?= $article->has('category') ? $this->Html->link($article->category->description, ['controller' => 'Categories', 'action' => 'view', $article->category->id]) : '' ?></td>
                             <td><?= h($article->created) ?></td>
                             <td>
-                                <a type="button" class="btn btn-success" data-toggle="modal" data-target="#<?= $article->id?>">Visualiser</a>
+                                <a type="button" class="btn btn-success" data-toggle="modal"
+                                   data-target="#<?= $article->id ?>">Visualiser</a>
                             </td>
                         </tr>
-                        <div class="modal fade" id="<?= $article->id?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal fade" id="<?= $article->id ?>" tabindex="-1" role="dialog"
+                             aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
-                                        <h4 class="modal-title" id="myModalLabel"><h1 class="text-center"><?= h($article->name) ?></h1></h4>
+                                        <h4 class="modal-title" id="myModalLabel"><h1
+                                                class="text-center"><?= h($article->name) ?></h1></h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="" id="cadre">
                                                 <?php if ($article->picture_url != NULL) { ?>
-                                                    <img class="img-responsive" src=" ../../../../img/article/<?= $article->picture_url ?>">
+                                                    <img class="img-responsive"
+                                                         src=" ../../../../img/article/<?= $article->picture_url ?>">
                                                 <?php } else { ?>
                                                 <?php } ?>
                                                 <div class="col-md-12">
@@ -163,15 +188,17 @@
                                                     </div>
                                                     <div class="col-md-4">
                                                         <p><i class="fa fa-calendar"
-                                                              aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?></p>
+                                                              aria-hidden="true"></i>Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?>
+                                                        </p>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <a class="btn btn-warning" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
-                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id ], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id),'class' => 'btn btn-danger']) ?>
+                                        <a class="btn btn-warning"
+                                           href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
+                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id), 'class' => 'btn btn-danger']) ?>
                                     </div>
                                 </div>
                             </div>

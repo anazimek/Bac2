@@ -23,7 +23,7 @@ class ArticlesController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Users', 'Categories'],
+            'contain' => ['Users', 'Categories','Comments.Users'],
             'limit' => 10
         ];
         $articles = $this->paginate($this->Articles);
