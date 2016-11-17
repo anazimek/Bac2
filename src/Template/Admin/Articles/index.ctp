@@ -1,6 +1,5 @@
 <?php $this->layout = 'back'; ?>
 <div class="articles content">
-    <h1 class="text-center" style="font-weight: 800"><?= __('Articles') ?></h1>
     <a class="btn btn-success pull-right"
        href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add', 'prefix' => 'admin']); ?>"><i class="fa fa-plus" aria-hidden="true"></i>
         Nouvel Article</a>
@@ -94,9 +93,11 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
+                                        <?php if($this->request->session()->read('Auth')['User']['id'] === $article->user_id) {?>
                                         <a class="btn btn-warning"
                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editer</a>
                                         <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id), 'class' => 'btn btn-danger']) ?>
+                                        <?php } ?>
                                     </div>
                                 </div>
                             </div>

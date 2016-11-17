@@ -1,5 +1,10 @@
 <?php if($this->request->session()->read('Auth')['User']['role_id']=== 1){?>
     <?php $this->layout = 'back'; ?>
+    <style>
+        body{
+            background-color: #856d4d;
+        }
+    </style>
 <?php } ?>
 <div class="users content">
     <div class="row">
@@ -28,8 +33,10 @@
                             <td><?= h($user->email) ?></td>
                         </tr>
                     </table>
+                    <?php if($this->request->session()->read('Auth')['User']['id'] === $user->id) {?>
                     <a class="btn btn-danger center-block" id="1"
                        href="#">Modifier mes informations</a>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -99,7 +106,10 @@
                                 <td><?= h($comment->description) ?></td>
                                 <td><?= h($comment->created) ?></td>
                                 <td>
-                                    <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger']) ?>
+                                    <?php if($this->request->session()->read('Auth')['User']['id'] === $user->id) {?>
+                                    <a class="btn btn-warning btn-xs" href="<?= $this->url->Build(['controller' => 'Comments', 'action' => 'edit', $comment->id])?>">Editer</a>
+                                    <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger btn-xs']) ?>
+                                    <?php } ?>
                                 </td>
                             </tr>
                         <?php endforeach; ?>

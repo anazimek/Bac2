@@ -9,6 +9,9 @@
         .article:hover {
             color: red;
         }
+        .choix:hover {
+            color: red;
+        }
         #cat{
         cursor: pointer;
         }
@@ -16,6 +19,11 @@
     </style>
     <?php if($this->request->session()->read('Auth')['User']['role_id']=== 1){?>
     <?php $this->layout = 'back'; ?>
+        <style>
+            body{
+                background-color: #856d4d;
+            }
+        </style>
     <?php } ?>
     <div class="row">
         <div class="col-md-3">
@@ -30,7 +38,7 @@
                         </div></a>
             <?php foreach ($categorie as $categories): ?>
                 <a href="<?= $this->url->build(['controller' => 'Articles','action' => 'index', $categories->id])?>">
-                <div class="well">
+                <div class="well choix">
                 <?= $categories->description?>
                 </div></a>
             <?php endforeach; ?>
@@ -92,6 +100,10 @@
                                                         style="font-weight: 800"><?= $comment->user->username ?></span>
                                                 </p>
                                                 <div><?= $comment->description ?></div>
+                                                <?php if($this->request->session()->read('Auth')['User']['id'] === $comment->user_id) {?>
+                                                    <a class="btn btn-warning btn-xs" href="<?= $this->url->Build(['controller' => 'Comments', 'action' => 'edit', $comment->id])?>">Editer</a>
+                                                    <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger btn-xs']) ?>
+                                                <?php }?>
                                             </div>
                                         <?php endforeach; ?>
                                         <?php if (isset($this->request->session()->read('Auth')['User']['id']) == 2) { ?>

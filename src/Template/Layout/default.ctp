@@ -26,7 +26,6 @@
 
     <!--favicon-->
     <?= $this->Html->meta(
-        'favicon.ico',
         '/favicon.ico',
         ['type' => 'icon']
     );
@@ -54,14 +53,14 @@
                         <a class="navbar-brand pull-right" id="connexion"
                            href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'logout']) ?>">Deconnexion</a>
                         <a class="navbar-brand pull-right"
-                           href="/utilisateur/profil/<?= $this->request->session()->read('Auth')['User']['id'] ?>">Mon
+                           href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'view',$this->request->session()->read('Auth')['User']['id']])?>">Mon
                             Profil</a>
                         <?= $this->html->image('user/' . $this->request->session()->read('Auth')['User']['picture_url'], ['class' => 'navbar-brand pull-right']) ?>
                     <?php else: ?>
                         <a class="navbar-brand pull-right"
                            href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'contact']) ?>">Contact</a>
-                        <a class="navbar-brand pull-right" id="connexion" href="/utilisateur/connexion">Connexion</a>
-                        <a class="navbar-brand pull-right" href="/utilisateur/s'inscrire">S'inscrire</a>
+                        <a class="navbar-brand pull-right" id="connexion" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'login']) ?>">Connexion</a>
+                        <a class="navbar-brand pull-right" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'add']) ?>">S'inscrire</a>
                     <?php endif; ?>
                 </div>
             </div>

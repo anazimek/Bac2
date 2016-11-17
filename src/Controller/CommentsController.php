@@ -77,14 +77,25 @@ class CommentsController extends AppController
         $comment = $this->Comments->get($id, [
             'contain' => []
         ]);
+        $article_id = $this->Comments->find('all', [
+            'fields' => [
+                'id' => 'article_id'
+            ],
+            'conditions'=> [
+                'Comments.id' => $id
+            ]
+        ])->first();
+
         if ($this->request->is(['patch', 'post', 'put'])) {
+            $this->request->data['article_id'] = $article_id->id;
+            $this->request->data['user_id'] = $this->Auth->User('id');
             $comment = $this->Comments->patchEntity($comment, $this->request->data);
             if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
+                $this->Flash->success(__('Le commentaire a bien été modifié.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['controller' => 'Articles','action' => 'index']);
             } else {
-                $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+                $this->Flash->error(__('Le commentaire n\'a pas pu être modifié.'));
             }
         }
         $this->set(compact('comment'));
