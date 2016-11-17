@@ -33,7 +33,8 @@ class ArticlesController extends AppController
         ];
         if (isset($id)=== false) {
             $articles = $this->paginate($this->Articles->find('all', [
-                'order' => ['Articles.created' => 'desc']
+                'order' => ['Articles.created' => 'desc'],
+                'limit' => 5
             ]));
         }else{
             $articles = $this->paginate($this->Articles->find('all', [

@@ -3,7 +3,7 @@
         <div class="col-md-8 col-md-offset-2 text-center">
             <?= $this->Flash->render('auth') ?>
             <?= $this->Form->create() ?>
-            <div class="panel panel-primary">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <?= __("Merci de rentrer vos nom d'utilisateur et mot de passe") ?>
                 </div>
@@ -16,7 +16,7 @@
                     <label for="pwd">Mot de passe:</label>
                     <?= $this->Form->input('password', ['label' => false]) ?>
                 </div>
-                <?= $this->Form->button(__('Se Connecter')); ?>
+                <?= $this->Form->button(__('Se Connecter'),['class' => 'btn btn-primary']); ?>
                 <?= $this->Form->end() ?>
                 </div>
             </div>

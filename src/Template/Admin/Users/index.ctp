@@ -26,21 +26,9 @@
                             <td><?= h($user->username) ?></td>
                             <td><?= h($user->email) ?></td>
                             <td>
-                                <div class="btn-group">
-                                    <button class="btn btn-xs btn-danger dropdown-toggle" type="button"
-                                            data-toggle="dropdown"
-                                            aria-expanded="false"> Actions
-                                        <i class="fa fa-angle-down"></i>
-                                    </button>
-                                    <ul class="dropdown-menu pull-left" role="menu">
-                                        <i></i> <a
-                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'view', $user->id]); ?>">Profil</a><br>
-                                        <i></i> <a
-                                            href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $user->id]); ?>">Editer</a><br>
-                                        <i></i>
-                                        <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                                    </ul>
-                                </div>
+                                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view', $user->id]); ?>">Profil</a><br>
+                                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'edit', $user->id]); ?>">Editer</a><br>
+                                <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
                             </td>
                         </tr>
                     <?php } ?>

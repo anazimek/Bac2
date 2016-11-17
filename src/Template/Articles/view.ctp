@@ -6,6 +6,11 @@
 </style>
 <?php if ($this->request->session()->read('Auth')['User']['role_id'] === 1) { ?>
     <?php $this->layout = 'back'; ?>
+    <style>
+        body{
+            background-color: #856d4d;
+        }
+    </style>
 <?php } ?>
 <div class="articles content">
     <div class="row">
@@ -35,7 +40,7 @@
                                 Catégorie: <?= $article->has('category') ? ($article->category->description) : '' ?>
                             </p>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-4 text-center">
                             <p style="color: red"><i class="fa fa-calendar"
                                                      aria-hidden="true"></i>
                                 Date: <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?></p>
@@ -56,6 +61,10 @@
                                     style="font-weight: 800"><?= $comment->user->username ?></span>
                             </p>
                             <div><?= $comment->description ?></div>
+                            <?php if($this->request->session()->read('Auth')['User']['id'] === $comment->user_id) {?>
+                            <a class="btn btn-warning btn-xs" href="<?= $this->url->Build(['controller' => 'Comments', 'action' => 'edit', $comment->id])?>">Editer</a>
+                            <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger btn-xs']) ?>
+                            <?php }?>
                         </div>
                     <?php endforeach; ?>
                     <?php if (isset($this->request->session()->read('Auth')['User']['id']) == 2) { ?>

@@ -22,7 +22,9 @@
                     <th scope="row"><?= __('Email') ?></th>
                     <td><?= h($user->email) ?></td>
                 </tr>
+                <?php if($this->request->session()->read('Auth')['User']['id'] === $user->id) {?>
                 <a class="btn btn-danger" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'edit', 'prefix' => 'admin', $user->id])?>">Modifier mes informations</a>
+                <?php } ?>
             </table>
         </div>
     </div>
