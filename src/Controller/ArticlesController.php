@@ -24,18 +24,28 @@ class ArticlesController extends AppController
      *
      * @return \Cake\Network\Response|null
      */
-    public function index()
+    public function index($id = null)
     {
+        $this->loadModel('Categories');
         $this->loadModel('Comments');
         $this->paginate = [
             'contain' => ['Users', 'Categories','Comments.Users'],
         ];
-        $articles = $this->paginate($this->Articles->find('all', [
-            'order' => ['Articles.created' => 'desc']
-        ]));
-        $comments = $this->Comments->NewEntity();
+        if (isset($id)=== false) {
+            $articles = $this->paginate($this->Articles->find('all', [
+                'order' => ['Articles.created' => 'desc']
+            ]));
+        }else{
+            $articles = $this->paginate($this->Articles->find('all', [
+                'conditions' => ['Articles.categorie_id' => $id],
+                'order' => ['Articles.created' => 'desc']
+            ]));
+        }
 
-        $this->set(compact('articles','comments'));
+        $comments = $this->Comments->NewEntity();
+        $categorie = $this->Categories->find('all');
+
+        $this->set(compact('articles','comments','categorie'));
         $this->set('_serialize', ['articles']);
     }
 
@@ -48,10 +58,14 @@ class ArticlesController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('Comments');
         $article = $this->Articles->get($id, [
-            'contain' => ['Users', 'Categories','Comments']
+            'contain' => ['Users', 'Categories','Comments.Users']
         ]);
 
+        $comments = $this->Comments->NewEntity();
+
+        $this->set(compact('comments'));
         $this->set('article', $article);
         $this->set('_serialize', ['article']);
     }

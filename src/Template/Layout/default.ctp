@@ -68,7 +68,7 @@
         </div>
     </nav>
 </header>
-<body style="background-color: #C0C0C0">
+<body style="background-color: #856d4d">
 <!--content-->
 <div class="content">
     <div class="container">
