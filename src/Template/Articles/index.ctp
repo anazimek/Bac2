@@ -1,17 +1,44 @@
-<div class="articles content">
+<div class="articles content"  style="min-height: 500px">
     <style>
         .well:hover {
             -moz-box-shadow: 20px 20px 20px #ccc;
             -webkit-box-shadow: 20px 20px 20px #ccc;
-            box-shadow: 10px 10px 10px #000000;
+            box-shadow: 5px 5px 5px #000000;
         }
 
         .article:hover {
             color: red;
         }
+        #cat{
+        cursor: pointer;
+        }
+
     </style>
+    <?php if($this->request->session()->read('Auth')['User']['role_id']=== 1){?>
+    <?php $this->layout = 'back'; ?>
+    <?php } ?>
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading 1" id="cat">
+                    <h4 class="text-center" style="font-weight: 800">Catégories</h4>
+                </div>
+                <div class="panel-body 2" style="display: none">
+                    <a href="<?= $this->url->build(['controller' => 'Articles','action' => 'index'])?>">
+                        <div class="well">
+                            <p>Tous les Articles</p>
+                        </div></a>
+            <?php foreach ($categorie as $categories): ?>
+                <a href="<?= $this->url->build(['controller' => 'Articles','action' => 'index', $categories->id])?>">
+                <div class="well">
+                <?= $categories->description?>
+                </div></a>
+            <?php endforeach; ?>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
             <?php foreach ($articles as $article): ?>
                 <?php if ($article->published == 1) { ?>
                     <a href="<?= $this->url->build(['controller' => 'Articles', 'action' => 'view', $article->id]) ?>">
@@ -29,19 +56,19 @@
                                 <h3><?= h($article->name) ?></h3>
                                 <div class="col-md-12">
                                     <div class="col-md-6">
-                                        <p style="color: cornflowerblue"><i class="fa fa-pencil-square-o"
+                                        <p style="color: black"><i class="fa fa-pencil-square-o"
                                                                             aria-hidden="true"></i> <?= $article->has('user') ? ($article->user->username) : '' ?>
                                         </p>
                                     </div>
                                     <div class="col-md-6 text-right">
-                                        <p style="color: cornflowerblue"><i class="fa fa-calendar"
+                                        <p style="color: black"><i class="fa fa-calendar"
                                                                             aria-hidden="true"></i> <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?>
                                         </p>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="col-md-12">
-                                    <p><?php $description = mb_substr($article->description, 0, 200);
+                                    <p style="color: black"><?php $description = mb_substr($article->description, 0, 200);
                                         echo $description;
                                         echo (strlen($description) < strlen($article->description)) ? '...' : ''; ?></p>
                                 </div>
@@ -98,6 +125,13 @@
             var currentId = $(this).attr('id');
             $('#commentaire-' + currentId + '').toggle('slow');
             // $(this).attr('id');  gets the id of a clicked link that has a class of menu
+        });
+    });
+    $(document).ready(function(){
+        $(".1").click(function(){
+            $(".2").animate({
+                height: 'toggle'
+            });
         });
     });
 </script>

@@ -2,8 +2,8 @@
 <div class="articles content">
     <h1 class="text-center" style="font-weight: 800"><?= __('Articles') ?></h1>
     <a class="btn btn-success pull-right"
-       href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add', 'prefix' => 'admin']); ?>">Nouvel
-        Article</a>
+       href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'add', 'prefix' => 'admin']); ?>"><i class="fa fa-plus" aria-hidden="true"></i>
+        Nouvel Article</a>
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 style="font-weight: 800">Articles Publiés</h3>
@@ -37,7 +37,7 @@
                             <td><?= h($article->created) ?></td>
                             <td>
                                 <a type="button" class="btn btn-success" data-toggle="modal"
-                                   data-target="#<?= $article->id ?>">Visualiser</a>
+                                   data-target="#<?= $article->id ?>"><i class="fa fa-list-alt" aria-hidden="true"></i> Visualiser</a>
                             </td>
                         </tr>
                         <div class="modal fade" id="<?= $article->id ?>" tabindex="-1" role="dialog"
@@ -86,7 +86,7 @@
                                                                     style="font-weight: 800"><?= $comment->user->username ?></span>
                                                             </p>
                                                             <div><?= $comment->description ?></div>
-                                                            <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger']) ?>
+                                                            <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger btn-xs']) ?>
                                                         </div>
                                                     <?php endforeach; ?>
                                                 </div>
@@ -95,7 +95,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-warning"
-                                           href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
+                                           href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editer</a>
                                         <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id), 'class' => 'btn btn-danger']) ?>
                                     </div>
                                 </div>
@@ -150,7 +150,7 @@
                             <td><?= h($article->created) ?></td>
                             <td>
                                 <a type="button" class="btn btn-success" data-toggle="modal"
-                                   data-target="#<?= $article->id ?>">Visualiser</a>
+                                   data-target="#<?= $article->id ?>"><i class="fa fa-list-alt" aria-hidden="true"></i> Visualiser</a>
                             </td>
                         </tr>
                         <div class="modal fade" id="<?= $article->id ?>" tabindex="-1" role="dialog"
@@ -197,7 +197,7 @@
                                     </div>
                                     <div class="modal-footer">
                                         <a class="btn btn-warning"
-                                           href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>">Editer</a>
+                                           href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'edit', $article->id]); ?>"><i class="fa fa-pencil-square" aria-hidden="true"></i> Editer</a>
                                         <?= $this->Form->postLink(__('Supprimer'), ['action' => 'delete', $article->id], ['confirm' => __('Are you sure you want to delete # {0}?', $article->id), 'class' => 'btn btn-danger']) ?>
                                     </div>
                                 </div>

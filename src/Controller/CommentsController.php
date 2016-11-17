@@ -54,11 +54,11 @@ class CommentsController extends AppController
             $this->request->data['user_id'] = $this->Auth->User('id');
             $comment = $this->Comments->patchEntity($comment, $this->request->data);
             if ($this->Comments->save($comment)) {
-                $this->Flash->success(__('The comment has been saved.'));
+                $this->Flash->success(__('Le commentaire a bien été ajouté.'));
 
-                return $this->redirect(['controller' => 'Articles','action' => 'index']);
+                return $this->redirect($this->referer());
             } else {
-                $this->Flash->error(__('The comment could not be saved. Please, try again.'));
+                $this->Flash->error(__('Le commentaire ne peut pas être ajouté.'));
             }
         }
         $this->set(compact('comment'));
@@ -103,11 +103,11 @@ class CommentsController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $comment = $this->Comments->get($id);
         if ($this->Comments->delete($comment)) {
-            $this->Flash->success(__('The comment has been deleted.'));
+            $this->Flash->success(__('Le commentaire a bien été supprimé.'));
         } else {
-            $this->Flash->error(__('The comment could not be deleted. Please, try again.'));
+            $this->Flash->error(__('Le commentaire ne peut pas être supprimé.'));
         }
 
-        return $this->redirect(['action' => 'index']);
+        return $this->redirect($this->referer());
     }
 }

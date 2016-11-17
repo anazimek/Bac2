@@ -1,3 +1,6 @@
+<?php if($this->request->session()->read('Auth')['User']['role_id']=== 1){?>
+    <?php $this->layout = 'back'; ?>
+<?php } ?>
 <div class="users content">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
