@@ -44,23 +44,23 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a href="/"><?= $this->html->image('logo1.PNG') ?></a>
+                    <a href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'index'])?>"><?= $this->Html->image('logo1.png') ?></a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
                     <?php if (isset($this->request->session()->read('Auth')['User']['id'])): ?>
                         <a class="navbar-brand pull-right"
-                           href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'contact']) ?>">Contact</a>
+                           href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'contact']) ?>">Contact</a>
                         <a class="navbar-brand pull-right" id="connexion"
-                           href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'logout']) ?>">Deconnexion</a>
+                           href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout']) ?>">Deconnexion</a>
                         <a class="navbar-brand pull-right"
-                           href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'view',$this->request->session()->read('Auth')['User']['id']])?>">Mon
+                           href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view',$this->request->session()->read('Auth')['User']['id']])?>">Mon
                             Profil</a>
-                        <?= $this->html->image('user/' . $this->request->session()->read('Auth')['User']['picture_url'], ['class' => 'navbar-brand pull-right']) ?>
+                        <?= $this->Html->image('user/' . $this->request->session()->read('Auth')['User']['picture_url'], ['class' => 'navbar-brand pull-right']) ?>
                     <?php else: ?>
                         <a class="navbar-brand pull-right"
-                           href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'contact']) ?>">Contact</a>
-                        <a class="navbar-brand pull-right" id="connexion" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'login']) ?>">Connexion</a>
-                        <a class="navbar-brand pull-right" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'add']) ?>">S'inscrire</a>
+                           href="<?= $this->url->build(['controller' => 'Users', 'action' => 'contact']) ?>">Contact</a>
+                        <a class="navbar-brand pull-right" id="connexion" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']) ?>">Connexion</a>
+                        <a class="navbar-brand pull-right" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'add']) ?>">S'inscrire</a>
                     <?php endif; ?>
                 </div>
             </div>
@@ -69,15 +69,12 @@
 </header>
 <body style="background-color: #856d4d">
 <!--content-->
-<div class="content">
-    <div class="container">
-        <div class="row">
+    <div class="container-fluid">
+        <div>
             <?= $this->Flash->render();?>
             <?= $this->fetch('content') ?>
         </div>
     </div>
-</div>
-
 </body>
 
 <footer>

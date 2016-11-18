@@ -21,7 +21,7 @@
                 </div>
                 <div class="panel-body">
                     <?php if ($article->picture_url != NULL) { ?>
-                        <img class="img-responsive" src=" ../../../../img/article/<?= $article->picture_url ?>">
+                        <?= $this->Html->image('article/'.h($article->picture_url),['class' => 'img-responsive'])?>
                     <?php } else { ?>
                     <?php } ?>
                     <div class="col-md-12">
@@ -57,17 +57,16 @@
                 <div class="panel-body com" id="commentaire-<?= $article->id ?>">
                     <?php foreach ($article->comments as $comment): ?>
                         <div class="well">
-                            <p>Commentaire de <span
-                                    style="font-weight: 800"><?= $comment->user->username ?></span>
+                            <span class="label label-primary"><?= $comment->user->username ?></span> a dit
                             </p>
                             <div><?= $comment->description ?></div>
-                            <?php if($this->request->session()->read('Auth')['User']['id'] === $comment->user_id) {?>
-                            <a class="btn btn-warning btn-xs" href="<?= $this->url->Build(['controller' => 'Comments', 'action' => 'edit', $comment->id])?>">Editer</a>
+                            <?php if ($this->request->session()->read('Auth.User.id') === $comment->user_id) { ?>
+                            <a class="btn btn-warning btn-xs" href="<?= $this->Url->Build(['controller' => 'Comments', 'action' => 'edit', $comment->id])?>">Editer</a>
                             <?= $this->Form->postLink(__('Supprimer'), ['controller' => 'Comments', 'action' => 'delete', $comment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $comment->id), 'class' => 'btn btn-danger btn-xs']) ?>
                             <?php }?>
                         </div>
                     <?php endforeach; ?>
-                    <?php if (isset($this->request->session()->read('Auth')['User']['id']) == 2) { ?>
+                    <?php if ($this->request->session()->read('Auth.User.role_id') == 2) { ?>
                         <?= $this->Form->create($comments, ['url' => ['controller' => 'Comments', 'action' => 'add', $article->id]]) ?>
                         <?= $this->Form->input('description', ['label' => false, 'placeholder' => 'Nouveau Commentaire']); ?>
                         <?= $this->Form->button(__('Envoyer')) ?>

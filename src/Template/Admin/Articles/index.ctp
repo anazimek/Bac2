@@ -54,8 +54,7 @@
                                         <div class="row">
                                             <div class="" id="cadre">
                                                 <?php if ($article->picture_url != NULL) { ?>
-                                                    <img class="img-responsive"
-                                                         src=" ../../../../img/article/<?= $article->picture_url ?>">
+                                                    <?= $this->Html->image('article/'.h($article->picture_url),['class' => 'img-responsive'])?>
                                                 <?php } else { ?>
                                                 <?php } ?>
                                                 <div class="col-md-12">

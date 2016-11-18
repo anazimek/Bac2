@@ -3,4 +3,7 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
     $message = h($message);
 }
 ?>
-<div class="message success" onclick="this.classList.add('hidden')"><?= $message ?></div>
+<div class="alert alert-success text-center" id="div" onclick="this.classList.add('hidden')"><?= $message ?></div>
+<script>
+    $('#div').delay(1500).slideUp(500);
+</script>
