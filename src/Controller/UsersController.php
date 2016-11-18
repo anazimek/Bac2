@@ -95,7 +95,7 @@ class UsersController extends AppController
                 $this->Flash->success('Un mail vous a été envoyé.');
                 return $this->redirect(['action' => 'view',$user->id]);
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('Votre compte n\'a pas été ajouté.'));
                 $this->Flash->error('Impossible de créer votre compte');
             }
         }
@@ -140,11 +140,11 @@ class UsersController extends AppController
             }
             $user = $this->Users->patchEntity($user, $this->request->data);
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Vos modifications sont enregistrées.'));
 
                 return $this->redirect(['action' => 'view', $user->id]);
             } else {
-                $this->Flash->error(__('The user could not be saved. Please, try again.'));
+                $this->Flash->error(__('Vos modifications ne sont pas enregistrées.'));
             }
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
@@ -164,9 +164,9 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The user has been deleted.'));
+            $this->Flash->success(__('L\'utilisateur est supprimé.'));
         } else {
-            $this->Flash->error(__('The user could not be deleted. Please, try again.'));
+            $this->Flash->error(__('L\'utilisateur n\'a pas pu être supprimé.'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -183,7 +183,7 @@ class UsersController extends AppController
                     return $this->redirect(['controller' => 'Articles','action' => 'index']);
                 }
             }
-            $this->Flash->error(__('Invalid username or password, try again'));
+            $this->Flash->error(__('Mot de passe ou nom d\'utilisateur invalide'));
         }
     }
 

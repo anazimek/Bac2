@@ -25,7 +25,6 @@
 
     <!--favicon-->
     <?= $this->Html->meta(
-        'favicon.ico',
         '/favicon.ico',
         ['type' => 'icon']
     );
@@ -47,11 +46,11 @@
                     <a class="navbar-brand" href="<?= $this->url->Build(['controller' => 'Articles', 'action' => 'index', 'prefix' => 'admin']); ?>">Articles</a>
                 </div>
                 <div class="collapse navbar-collapse ribbon" id="bs-example-navbar-collapse-1">
-                    <a class="navbar-brand" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'index', 'prefix' => 'admin']); ?>">Utilisateurs</a>
-                    <a class="navbar-brand" href="<?= $this->url->Build(['controller' => 'Comments', 'action' => 'index', 'prefix' => 'admin']); ?>">Commentaires</a>
-                    <a class="navbar-brand" href="<?= $this->Url->Build(['controller' => 'Articles', 'action' => 'index', 'prefix' => false]); ?>">Expérience utilisateur</a>
-                    <a class="navbar-brand pull-right" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'logout', 'prefix' => false]); ?>">Déconnexion</a>
-                    <a class="navbar-brand pull-right" href="<?= $this->url->Build(['controller' => 'Users', 'action' => 'view','prefix' => 'admin',  $this->request->session()->read('Auth.User.id')]); ?>">Mon Profil</a>
+                    <a class="navbar-brand" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index', 'prefix' => 'admin']); ?>">Utilisateurs</a>
+                    <a class="navbar-brand" href="<?= $this->Url->build(['controller' => 'Comments', 'action' => 'index', 'prefix' => 'admin']); ?>">Commentaires</a>
+                    <a class="navbar-brand" href="<?= $this->Url->build(['controller' => 'Articles', 'action' => 'index', 'prefix' => false]); ?>">Expérience utilisateur</a>
+                    <a class="navbar-brand pull-right" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'logout', 'prefix' => false]); ?>">Déconnexion</a>
+                    <a class="navbar-brand pull-right" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'view','prefix' => 'admin',  $this->request->session()->read('Auth.User.id')]); ?>">Mon Profil</a>
                 </div>
             </div>
         </div>
