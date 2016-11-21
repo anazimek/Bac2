@@ -67,7 +67,7 @@
         </div>
     </nav>
 </header>
-<body style="background-color: #856d4d">
+<body style="background-color: #A3C6C4">
 <!--content-->
     <div class="container-fluid">
         <div>
