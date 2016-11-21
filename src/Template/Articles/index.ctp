@@ -68,12 +68,12 @@
                             <h3><?= h($article->name) ?></h3>
                             <div class="col-md-12">
                                 <div class="col-md-6">
-                                    <p style="color: black"><i class="fa fa-pencil-square-o"
+                                    <p style="color: royalblue"><i class="fa fa-pencil-square-o"
                                                                aria-hidden="true"></i> <?= $article->has('user') ? ($article->user->username) : '' ?>
                                     </p>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <p style="color: black"><i class="fa fa-calendar"
+                                    <p style="color: royalblue"><i class="fa fa-calendar"
                                                                aria-hidden="true"></i> <?= h($article->created->i18nFormat('dd-MMM-yyyy')) ?>
                                     </p>
                                 </div>
@@ -86,7 +86,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="panel panel-default">
+                            <div class="panel" style="background-color: #A3C6C4">
                                 <div class="panel-heading">
                                     <?php $nb = 0; ?>
                                     <?php foreach ($article->comments as $comment): ?>

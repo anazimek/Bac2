@@ -96,7 +96,6 @@
                     <table class="table table-bordered">
                         <thead>
                         <tr>
-                            <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('article_id') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('description') ?></th>
                             <th scope="col"><?= $this->Paginator->sort('created') ?></th>
@@ -106,7 +105,6 @@
                         <tbody>
                         <?php foreach ($user->comments as $comment): ?>
                             <tr>
-                                <td><?= $comment->has('user') ? $this->Html->link($comment->user->username, ['controller' => 'Users', 'action' => 'view', $comment->user->id]) : '' ?></td>
                                 <td><?= $comment->has('article') ? $this->Html->link($comment->article->name, ['controller' => 'Articles', 'action' => 'view', $comment->article->id]) : '' ?></td>
                                 <td><?= h($comment->description) ?></td>
                                 <td><?= h($comment->created) ?></td>

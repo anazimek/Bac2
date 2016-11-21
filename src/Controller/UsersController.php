@@ -89,7 +89,7 @@ class UsersController extends AppController
                     ->template('welcome')
                     ->emailFormat('html')
                     ->to($user->email)
-                    ->subject('confirmation')
+                    ->subject('Bienvenue')
                     ->send();
 
                 $this->Flash->success('Un mail vous a été envoyé.');
