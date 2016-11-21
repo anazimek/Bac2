@@ -1,7 +1,8 @@
 Alexis Nazimek
 
 
-                                                                                                                   Projet Blog
+                                                                                                    Projet Blog
+Voici les différents documents demmandés.
 
 
 Présentation:
